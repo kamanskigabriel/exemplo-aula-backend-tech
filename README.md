@@ -1,5 +1,5 @@
 # oque é Branch
-Para criar nomenclaturas 
+Para criar nomenclaturas no prejeto
 # exemplo-aula-backend
 
 ````
