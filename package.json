@@ -1,0 +1,24 @@
+{
+  "name": "exemplo-aula-backend-tech",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/kamanskigabriel/exemplo-aula-backend-tech#readme",
+  "bugs": {
+    "url": "https://github.com/kamanskigabriel/exemplo-aula-backend-tech/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kamanskigabriel/exemplo-aula-backend-tech.git"
+  },
+  "license": "ISC",
+  "author": "Gabriel Kamanski",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev" : "node --watch index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
