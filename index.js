@@ -1,12 +1,12 @@
-import express from "express";
-import cachorro from "./router/cachorro.js";
+import express from 'express'
+import router from './router/carro.js'
 
-const app = express();
+const app = express()
 
 app.use(express.json())
 
-app.use('/api/v1/cachorro', cachorro)
+app.use("/api/v1/carro", router)
 
-    app.listen(3000, () => {
-    console.log("serve in port 3000")
+app.listen(3000, ()=> {
+    console.log("Servidor ouvindo na porta 3000")
 })
