@@ -8,37 +8,43 @@ class ServiceCarro {
         return RepositoryCarro.Find
     }
 
-    Detalhe(id) {
-        // if (!id) {
-        //     throw new Error("Favor informar o ID")
-        // }
-        // const carro = RepositoryCarro.find(it => it.id === id)
-        // if (!carro) {
-        //     throw new Error(`ID ${id} do carro não encontrado`)
-        // }
-        // return carro
+    async Detalhe(id) {
+        if (!id) {
+            throw new Error("Favor informar o ID")
+        }
+        const carro = await RepositoryCarro.findByid(id)
+        if (!carro) {
+            throw new Error(`ID ${id} do carro não encontrado`)
+        }
+        return carro
     }
     // função ( paramatros, pode haver infinitos parametros, mais tenta deixar 5 a 6 paramatros )
     // da para reduzir parametros com Objetos
-    Criar(id, marca, ano) {
-    //     if (!id || !marca || !ano) {
-    //         throw new Error("Favor informar todos os dados")
-    //     }
+   async Criar(marca, ano) {
+            if ( !marca || !ano) {
+                throw new Error("Favor informar todos os dados")
+            }
 
-    //     RepositoryCarro.push({ id, marca, ano })
-    //     return { id, marca, ano }
+           const carro = await RepositoryCarro.Create(marca, ano)
+            return carro
     }
 
 
-    Alterar() { }
+    async Alterar(id, marca, ano) {
+        if (!id||!marca||!ano){
+            throw new Error ("informa a porra dos dados")
 
-    Deletar(id) {
-    //     if (!id) {
-    //         throw new Error("Favor informar o ID")
-    //     }
-    //     RepositoryCarro.splice(it => it.id === id, 1)
-    //     return id
+        }
+        const alterar = await RepositoryCarro.Update(id, marca, ano)
+        return alterar
+     }
+
+    async Deletar(id) { 
+    if (!id){
+        throw new Error ({ massage : "informar erro"})
     }
-
+    const carro = await RepositoryCarro.Delete(id)
+    return id
+    }
 }
 export default new ServiceCarro()
