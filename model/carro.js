@@ -1,17 +1,17 @@
 import database from "../config/database.js";
 
 class Carro {
-    constructor () {
+    constructor() {
         this.model = database.db.define("carros", {
-            id : {
+            id: {
                 type: database.db.Sequelize.INTEGER,
-                primaryKey : true,
-                autoIncrement : true,
+                primaryKey: true,
+                autoIncrement: true
             },
-            marca : {
+            marca: {
                 type: database.db.Sequelize.STRING,
             },
-            ano : {
+            ano: {
                 type: database.db.Sequelize.INTEGER,
             }
         })

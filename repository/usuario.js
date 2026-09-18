@@ -1,45 +1,53 @@
-import usuario from "../model/usuario.js"
+import usuario from '../model/usuario.js';
 
-// INSERT INTO carros(id, marca, ano, createdAt, updatedAt) VALUES ("Fiat", 1998)
-
-class RepositoryCarro {
-
+// INSERT INTO usuarios (email, senha) VALUES ("FIAT", 1998)
+class RepositoryUsuario {
+    
     async Find() {
-        const carros = await usuario.findAll()
-        return carros
+        const usuarios = await usuario.findAll()
+
+        return usuarios
     }
 
-    async findByid(id) {
-        const usuariodetalhes = await usuario.findByPk(id)
-        return carrodetalhes
+    async FindById(id) {
+        const usuarioDetalhes = await usuario.findByPk(id)
+
+        return usuarioDetalhes
     }
 
-    async Create(id, marca, ano) {
-        const create = await usuario.create({ marca, ano })
-        return create
+    async Create(email, senha) {
+        const usuarioCreate = await usuario.create({ email, senha })
+
+        return usuarioCreate
     }
-    async Update(id, marma, ano) {
-        const updated = await usuario.findByPk(id)
-        if(!updated){
-            throw new Error("Sem usuario")
+
+    async Update(id, email, senha) {
+        const usuarioAlterar = await usuario.findByPk(id)
+
+        if(!usuarioAlterar) {
+            throw new Error("Usuario não encontrado")
         }
-        updated.marca = marca
-        updated.ano = ano
 
+        usuarioAlterar.email = email || usuarioAlterar.email
+        usuarioAlterar.senha = senha || usuarioAlterar.senha
 
-       await updated.save()
+        await usuarioAlterar.save()
     }
 
     async Delete(id) {
-        const deleted = await carro.findByPk(id)
-        if (!deleted)
-            throw new Error("Usuario não acado bruh")
-        await deleted.destroy()
-        return deleted
+        const usuarioDeletar = await usuario.findByPk(id)
+
+        if(!usuarioDeletar){
+            throw new Error("Usuario não encontrado")
+        }
+
+        await usuarioDeletar.destroy()
+
+        return usuarioDeletar
     }
-    async FindByEmail(email){
-        return usuario.findOne({where : {email}})
+
+    async FindByEmail(email) {
+        return usuario.findOne({ where: { email } })
     }
 }
-
-export default new RepositoryCarro
+export default new RepositoryUsuario()

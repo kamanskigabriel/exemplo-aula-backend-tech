@@ -1,41 +1,50 @@
-import carro from "../model/carro.js"
+import carro from '../model/carro.js';
 
-// INSERT INTO carros(id, marca, ano, createdAt, updatedAt) VALUES ("Fiat", 1998)
-
+// INSERT INTO carros (marca, ano) VALUES ("FIAT", 1998)
 class RepositoryCarro {
-
+    
     async Find() {
         const carros = await carro.findAll()
+
         return carros
     }
 
-    async findByid(id) {
-        const carrodetalhes = await carro.findByPk(id)
-        return carrodetalhes
+    async FindById(id) {
+        const carroDetalhes = await carro.findByPk(id)
+
+        return carroDetalhes
     }
 
-    async Create(id, marca, ano) {
-        const create = await carro.create({ marca, ano })
-        return create
+    async Create(marca, ano) {
+        const carroCreate = await carro.create({ marca, ano })
+
+        return carroCreate
     }
-    async Update(id, marma, ano) {
-        const updated = await carro.findByPk(id)
-        if(!updated){
-            throw new Error("Sem carro")
+
+    async Update(id, marca, ano) {
+        const carroAlterar = await carro.findByPk(id)
+
+        if(!carroAlterar) {
+            throw new Error("Carro não encontrado")
         }
-        updated.marca = marca
-        updated.ano = ano
 
+        carroAlterar.marca = marca || carroAlterar.marca
+        carroAlterar.ano = ano || carroAlterar.ano
 
-       await updated.save()
+        await carroAlterar.save()
     }
 
     async Delete(id) {
-        const deleted = await carro.findByPk(id)
-        if (!deleted)
-            throw new Error("Carrinho não acado bruh")
-        await deleted.destroy()
-        return deleted
+        const carroDeletar = await carro.findByPk(id)
+
+        if(!carroDeletar){
+            throw new Error("Carro não encontrado")
+        }
+
+        await carroDeletar.destroy()
+
+        return carroDeletar
     }
 }
-export default new RepositoryCarro
+
+export default new RepositoryCarro()
